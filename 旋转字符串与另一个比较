@@ -1,0 +1,36 @@
+int string_spin(char* arr, char* str)
+{
+	int i = 0;
+	int n = strlen(arr);
+	for (i = 0; i < n; i++)
+	{
+		int j = 0;
+		for (j = 0; j < n; j++)
+		{
+			char tmp = 0;
+			tmp = *(arr + 1);
+			*(arr + j) = *(arr + 1 + j);
+			*(arr + j + 1) = tmp;
+		}
+		if (*arr == *str)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	char arr[10] = "ABCDEF";
+	char str[10] = "CDEFAB";
+	int ret = string_spin(arr, str);
+	if (ret == 1)
+	{
+		printf("Ok\n");
+	}
+	else
+	{
+		printf("No\n");
+	}
+	return 0;
+}
