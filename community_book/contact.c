@@ -3,20 +3,38 @@
 
 void InitContact(Contact* pc)
 {
-	// Contact con = { 0 };
+	pc->date = (Peoinfo*)malloc(CAPA_MAX * sizeof(Peoinfo));
+	if (pc->date == NULL)
+	{
+		perror("InitContact");
+		return;
+	}
 	pc->sz = 0;
-	memset(pc->date, 0, sizeof(pc->date));
+	pc->capacity = CAPA_MAX;
 }
 
 void Addcontact(Contact* pc)
 {
-	if (pc->sz == MAX)
+	// 考虑增容
+
+	if (pc->sz == pc->capacity)
 	{
-		printf("通讯录已满，无法添加\n");
-		return;
+		Peoinfo* ptr = (Peoinfo*)realloc(pc->date, (pc->capacity + INC_SZ) * sizeof(Peoinfo));
+		if (ptr != NULL)
+		{
+			pc->date = ptr;
+			pc->capacity += INC_SZ;
+			printf("增容成功\n");
+		}
+		else
+		{
+			perror("Addcontact");
+			return;
+		}
 	}
+
 	printf("请输入姓名:>");
-	scanf("%s", pc->date[pc->sz].name);
+	scanf("%s", pc->date[pc->sz].name);		
 	printf("请输入性别:>");
 	scanf("%s", pc->date[pc->sz].sex);
 	printf("请输入年龄:>");
@@ -27,6 +45,7 @@ void Addcontact(Contact* pc)
 	scanf("%s", pc->date[pc->sz].addr);
 	pc->sz++;
 	printf("增加成功\n");
+	
 }
 
 void print(Contact* pc)
@@ -122,4 +141,12 @@ void Modifycontact(Contact* pc)
 	printf("请输入地址:>");
 	scanf("%s", pc->date[ret].addr);
 	printf("修改成功\n");
+}
+
+void Destorycontact(Contact* pc)
+{
+	free(pc->date);
+	pc->date = NULL;
+	pc->sz = 0;
+	pc->capacity = 0;
 }

@@ -1,12 +1,15 @@
 #pragma once
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 #define NAME 10
 #define SEX  5
 #define TELE 12
 #define ADDR 20
-#define MAX  100
+#define CAPA_MAX 3
+#define INC_SZ 2
+
 //创建通讯录人员信息
 typedef struct PeoInfo
 {
@@ -19,10 +22,10 @@ typedef struct PeoInfo
 
 typedef struct Contact
 {
-	Peoinfo date[MAX];
+	Peoinfo* date;
 	int sz;
+	int capacity;
 }Contact;
-
 // 初始化通讯录
 void InitContact(Contact* pc);
 
@@ -40,3 +43,6 @@ void Sreachcontact(Contact* pc);
 
 // 修改信息
 void Modifycontact(Contact* pc);
+
+//销毁通讯录
+void Destorycontact(Contact* pc);

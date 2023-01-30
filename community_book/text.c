@@ -47,6 +47,7 @@ int main()
 			print(&con);
 			break;
 		case EXIT:
+			Destorycontact(&con);
 			printf("�˳�ͨѶ¼\n");
 			break;
 		default:
