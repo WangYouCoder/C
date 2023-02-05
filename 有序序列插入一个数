@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+	int n = 0;
+	int arr[51] = { 0 };
+	int i = 0;
+	scanf("%d", &n);
+	int a = n;
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d ", &arr[i]);
+	}
+	//需要插入的数
+	int m = 0;
+	scanf("%d", &m);
+	while (arr[n - 1] > m)
+	{
+		arr[n] = arr[n - 1];
+		n--;
+	}
+	arr[n] = m;
+	for (i = 0; i <= a; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
