@@ -1,0 +1,35 @@
+int main()
+{
+	int i = 0;
+	int arr[10] = { 0 };
+	for (i = 0; i < 10; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	int left = 0;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	int right = sz - 1;
+	while (left <= right)
+	{
+		while (arr[left] % 2 == 1)  // 从左向右找到第一个偶数
+		{
+			left++;
+		}
+		while (arr[right] % 2 == 0)  // 从右往左找到第一个奇数
+		{
+			right--;
+		}
+		if (left < right)
+		{
+			int tmp = 0;
+			tmp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = tmp;
+		}
+	}
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
