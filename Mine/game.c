@@ -49,8 +49,8 @@ void Setmine(char board[ROWS][COLS], int row, int col)
 		}
 	}
 }
-int win = 0;
 
+int win = 0;
 void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y)
 {
 	int i = 0;
@@ -76,9 +76,11 @@ void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y)
 		show[x][y] = count + '0';
 		win++;
 	}
-		for (i = x - 1; i < x + 1; i++)
+	if (show[x][y] == ' ')
+	{
+		for (i = x - 1; i <= x + 1; i++)
 		{
-			for (j = y - 1; j < y + 1; j++)
+			for (j = y - 1; j <= y + 1; j++)
 			{
 				if (mine[i][j] != '1' && show[i][j] == '*' && i > 0 && i <= ROW && j > 0 && j <= COL)
 				{
@@ -86,6 +88,7 @@ void Findmine(char mine[ROWS][COLS], char show[ROWS][COLS], int x, int y)
 				}
 			}
 		}
+	}
 }
 void Sreachmine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 {
